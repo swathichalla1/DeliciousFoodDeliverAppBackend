@@ -9,7 +9,6 @@ const secretKey = process.env.secret_key
 const userRegister = async(req,res)=>{
     const {details} = req.body
     const {username,email,password} = details ;
-    
     try{
          const useremail = await User.findOne({email});
          if (useremail){
@@ -28,7 +27,8 @@ const userRegister = async(req,res)=>{
          return res.status(201).json({message:"User Registered Successfully"})
     }
     catch(e){
-           return res.status(500).json({message:"Internal Server Error"})
+        console.log(e.message)
+           return res.status(500).json({message:`Internal Server Error : ${e}`})
     }
 
 }

@@ -6,7 +6,7 @@ const bodyParser = require("body-parser")
 const UserRoutes = require("./Routes/UserRoutes")
 const ItemRoutes = require("./Routes/ItemRoutes")
 const app = express();
-const port = 4005;
+const port = process.env.PORT||4005;
 
 app.listen(port, () => {
     console.log(`The server has started at ${port}`);

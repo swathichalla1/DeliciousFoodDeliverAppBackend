@@ -27,7 +27,6 @@ const userRegister = async(req,res)=>{
          return res.status(201).json({message:"User Registered Successfully"})
     }
     catch(e){
-        console.log(e.message)
            return res.status(500).json({message:`Internal Server Error : ${e}`})
     }
 
@@ -37,6 +36,7 @@ const userRegister = async(req,res)=>{
 const userLogin = async(req,res)=>{
     const {details} = req.body;
     const {email,password} = details;
+    console.log(email,password)
     if (!details || !email || !password) {
         return res.status(400).json({ message: "Missing email or password" });
     }
@@ -54,6 +54,7 @@ const userLogin = async(req,res)=>{
         }
     
         const token = jwt.sign({ userId: userExists._id },secretKey)
+        console.log("user logged yeyyy")
         return res.status(200).json({message:"User logged in succesfully",
             jwtToken:token,id:userExists._id
         })
